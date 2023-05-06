@@ -17,8 +17,7 @@ class CustomerHelper:
         payload["password"] = password
         payload.update(**kwargs)
 
-        self.requests_util.post("customers", payload=payload)
-
-        return True
+        response = self.requests_util.post("customers", payload=payload)
+        return response.json()
 
 

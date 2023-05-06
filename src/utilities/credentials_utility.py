@@ -13,3 +13,14 @@ class CredentialsUtility:
             raise Exception("The API credentials 'WC_KEY' and 'WC_SECRET' must be set in env variables.")
         else:
             return {"wc_key": wc_key, "wc_secret": wc_secret}
+
+    @staticmethod
+    def get_db_credentials():
+        db_user = os.environ.get("DB_USER")
+        db_password = os.environ.get("DB_PASSWORD")
+        print(db_user, db_password)
+
+        if not db_user or not db_password:
+            raise Exception("The DB credentials 'DB_USER' and 'DB_PASSWORD' must be set in env variables.")
+        else:
+            return {"db_user": db_user, "db_password": db_password}
