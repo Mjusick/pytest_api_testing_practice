@@ -1,7 +1,7 @@
 import json
 import os
 
-from requests import post
+from requests import post, get
 from requests_oauthlib import OAuth1
 import logging as logger
 
@@ -25,8 +25,15 @@ class RequestUtility:
         response = post(url=url, data=json.dumps(payload), headers=headers, auth=self.auth)
         assert response.status_code == expected_status_code,\
             f"Expected status code {expected_status_code}, but was {response.status_code}"
-        logger.debug(f"API response: {response.json()}")
+        logger.debug(f"API POST response: {response.json()}")
         return response
 
-    def get(self):
-        pass
+    def get(self, endpoint, payload=None, headers=None, expected_status_code=200):
+        if not headers:
+            headers = {"Content-Type": "application/json"}
+        url = self.base_url + endpoint
+        response = get(url=url, data=json.dumps(payload), headers=headers, auth=self.auth)
+        assert response.status_code == expected_status_code, \
+            f"Expected status code {expected_status_code}, but was {response.status_code}"
+        logger.debug(f"API GET response: {response.json()}")
+        return response
