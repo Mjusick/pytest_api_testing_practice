@@ -19,5 +19,3 @@ class CustomerHelper:
 
         response = self.requests_util.post("customers", payload=payload)
         return response.json()
-
-
