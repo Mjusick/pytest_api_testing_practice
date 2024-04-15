@@ -7,7 +7,7 @@ from apitesting.src.utilities.generic_utilities import generate_random_string
 pytestmark = [pytest.mark.products, pytest.mark.smoke]
 
 
-@pytest.matk.tcid26
+@pytest.mark.tcid26
 def test_create_one_product():
 
     # create product data
